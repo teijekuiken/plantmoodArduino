@@ -204,7 +204,7 @@ Wanneer alles aangesloten is, laad je de sketch op de Arduino. Gefeliciteerd, me
 
 Hieronder is de tekening te vinden met de aansluitingen voor alle opties. Aan de hand van de opties die gebruikt gaan worden kun je de hardcomponenten aansluiten. Er hoeft niks aangepast te worden wanneer een optie niet gebruikt wordt. Je hoeft simpelweg deze componenten niet aan te sluiten.  
 Volg de pinaansluitingen nauwgezet omdat de pinnummers zijn gedefinieerd in de code.
-![Circuittekening](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/blob/develop/Images/MoodPlant_Sketch_bb.png)
+![Circuittekening](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/raw/develop/Images/MoodPlant_Sketch_bb.png)
 
 ## Status
 
