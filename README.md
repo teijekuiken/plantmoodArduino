@@ -60,7 +60,7 @@ Hieronder een lijst met libraries die gedownload zijn voor de optie LCD:
 
 ### Afbeelding
 
-![Hardware](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/blob/develop/Images/ProjectFoto.JPG)
+![Hardware](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/raw/develop/Images/ProjectFoto.JPG)
 Dit zijn alle opties aangesloten op de Arduino. De zwarte stekker kan worden aangesloten op zijn eigen voedingsbron (rode powerbank), of gewoon aan de computer.
 
 ### Installatie
