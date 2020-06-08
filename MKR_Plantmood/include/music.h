@@ -3,9 +3,9 @@
 #include <SD.h>
 
 //Variables
-String wetSong = "wetSong.wav";
-String aliveSong = "aliveSong.wav";
-String drySong = "drySong.wav";
+String wetSong = "wet.wav";
+String aliveSong = "alive.wav";
+String drySong = "dry.wav";
 
 String wetText = "I'm drowning :(";
 String aliveText = "I'm alive :)";

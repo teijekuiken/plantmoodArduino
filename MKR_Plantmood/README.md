@@ -60,7 +60,7 @@ Hieronder een lijst met libraries die gedownload zijn voor de optie LCD:
 
 ### Afbeelding
 
-![Hardware](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/raw/develop/Images/ProjectFoto.JPG)
+![Hardware](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/blob/develop/Images/ProjectFoto.JPG)
 Dit zijn alle opties aangesloten op de Arduino. De zwarte stekker kan worden aangesloten op zijn eigen voedingsbron (rode powerbank), of gewoon aan de computer.
 
 ### Installatie
@@ -130,9 +130,9 @@ Deze opties zijn nu klaar voor gebruik.
 - Mono;
 - Kies hoeveel seconde en welk deel van het liedje je wilt horen;
 - Sla de liedjes met de volgende namen op:
-   - Naam van het liedje wanneer de aarde van de plant te nat is: wetSong.wav
-   - Naam van het liedje wanneer de aarde van de plant te droog is: drySong.wav
-   - Naam van het liedje wanneer de aarde van de plant goed is: aliveSong.wav
+   - Naam van het liedje wanneer de aarde van de plant te nat is: wet.wav
+   - Naam van het liedje wanneer de aarde van de plant te droog is: dry.wav
+   - Naam van het liedje wanneer de aarde van de plant goed is: alive.wav
 3. Formateer de SD kaart.
 4. Zet de drie liedjes op de SD kaart (zonder ze in in een map te plaatsen).
 5. SD kaart module testen:
@@ -204,7 +204,7 @@ Wanneer alles aangesloten is, laad je de sketch op de Arduino. Gefeliciteerd, me
 
 Hieronder is de tekening te vinden met de aansluitingen voor alle opties. Aan de hand van de opties die gebruikt gaan worden kun je de hardcomponenten aansluiten. Er hoeft niks aangepast te worden wanneer een optie niet gebruikt wordt. Je hoeft simpelweg deze componenten niet aan te sluiten.  
 Volg de pinaansluitingen nauwgezet omdat de pinnummers zijn gedefinieerd in de code.
-![Circuittekening](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/raw/develop/Images/MoodPlant_Sketch_bb.png)
+![Circuittekening](https://git.fhict.nl/o-s3/team-projects/oop-a/arduino/-/blob/develop/Images/MoodPlant_Sketch_bb.png)
 
 ## Status
 

@@ -9,11 +9,11 @@
 #include <waterpump.h>
 
 //Variables 
-const char* arduinoSn = "PlantMood1"; 
+const char* arduinoSn = "TestArduino"; 
 const int defaultportMosquitto = 1883; 
 
 const char* pubTopic = "Plantmood/AllPlantMoods/Data";
-const char* subTopic = "PlantMood/PlantMood1/Mood";
+String subTopic = String("Plantmood/"+String(arduinoSn)+"/Mood");
 
 long currentTime, lastTime;
 
@@ -35,8 +35,8 @@ void connToMqttBroker() {
     Serial.println("Connecting to MQTT server...");
     if (mqttClient.connect(arduinoSn)) {
       Serial.println("Connected to MQTT server");
-      mqttClient.subscribe(subTopic);
-      Serial.println("Subscribed to topic");
+      mqttClient.subscribe(subTopic.c_str());
+      Serial.println("Subscribed to topic " + subTopic);
     } else {
       Serial.print("failed with state: ");
       Serial.print(mqttClient.state());
@@ -52,7 +52,7 @@ void pubMessage() {
     currentMoistureValue = moistureMeassurement();
     Serial.print("Sensorwaarde is: ");                    
     Serial.println(currentMoistureValue);
-    mqttClient.publish(pubTopic, String(String (arduinoSn) +", " +String(currentMoistureValue)).c_str());
+    mqttClient.publish(pubTopic, String(String (arduinoSn) +"," +String(currentMoistureValue)).c_str());
     Serial.println("Message published");
     lastTime = millis();
   }
@@ -74,11 +74,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
   drawBarGraph(currentMoistureValue);
 
   //3. Liedje afspelen aan de hand van de STATUS en eventueel water geven 
-  if (strcmp(newMessage, "Wet") == 0) {
+  if (strcmp(newMessage, "WET") == 0) {
       playWetSong();
-    } else if (strcmp(newMessage, "Alive") == 0) {
+    } else if (strcmp(newMessage, "ALIVE") == 0) {
       playAliveSong();
-    } else if (strcmp(newMessage, "Dry") == 0) {
+    } else if (strcmp(newMessage, "DRY") == 0) {
       waterpumpOnAndOff();
       playDrySong();
     } else {

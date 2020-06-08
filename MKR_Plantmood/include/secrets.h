@@ -1,2 +1,2 @@
-#define SECRET_SSID "Smits-Wi-Fi"
-#define SECRET_PASS "Wi-Fi@Home"
+#define SECRET_SSID ""
+#define SECRET_PASS ""
