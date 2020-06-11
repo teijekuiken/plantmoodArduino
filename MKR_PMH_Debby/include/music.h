@@ -2,22 +2,27 @@
 #include <AudioZero.h>
 #include <SD.h>
 
+//Own Headerfiles
+
 //Variables
-String wetSong = "wet.wav";
-String aliveSong = "alive.wav";
-String drySong = "dry.wav";
+File file;
+String wetSong = "hands.wav";
+String happySong = "rob.wav";
+String drySong = "moon.wav";
 
-String wetText = "I'm drowning :(";
-String aliveText = "I'm alive :)";
-String dryText = "I'm thirsty!";
+int limitWet = 900;
+int limitDry = 400;
 
-String wetTextSong = "You're listening to the wet song";
-String aliveTextSong = "You're listening to the alive song";
-String dryTextSong = "You're listening to the dry song";
-String endText = "End of the song";
+String wetText = "Ik verdrink! Geef mij geen water meer :(";
+String happyText = "Ik ben happy :)";
+String dryText = "Zet die waterpomp eens aan, ik heb dorst!";
+
+String wetTextSong = "Je luistert naar Slow Hands";
+String happyTextSong = "Je luistert naar De Mol";
+String dryTextSong = "Je luistert naar Shup up and Dance with Me";
+String endText = "Einde van het liedje";
 
 //Objects
-File file;
 
 //Methods setup
 void musicSetup() {
@@ -40,11 +45,11 @@ void playWetSong() {
   Serial.println(endText);  
 }
 
-void playAliveSong() {
+void playHappySong() {
   AudioZero.begin(16000); 
-  Serial.println (aliveText);
-  file = SD.open(aliveSong);
-  Serial.println(aliveTextSong);
+  Serial.println (happyText);
+  file = SD.open(happySong);
+  Serial.println(happyTextSong);
   AudioZero.play(file);
   AudioZero.end(); 
   Serial.println(endText);
