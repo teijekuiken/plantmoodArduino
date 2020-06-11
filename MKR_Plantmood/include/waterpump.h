@@ -1,14 +1,10 @@
 //Libraries 
 #include <SPI.h>
 
-//Own Headerfiles
-
 //Variables 
 int waterPin = 12; 
 int onTimeWaterpump = 5000;
-const String textWaterpump = "Eindelijk krijg ik drinken!";
-
-//Objects
+const String textWaterpump = "Finally i'm getting a drink!";
 
 //Methods setup
 void waterpumpSetup() {

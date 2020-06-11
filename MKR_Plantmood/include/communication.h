@@ -9,17 +9,17 @@
 #include <waterpump.h>
 
 //Variables 
-const char* plantMood_ID = "PMH_Debby"; 
+const char* arduinoSn = "TestArduino"; 
 const int defaultportMosquitto = 1883; 
 
-const char* pubTopic = "PlantMood/PMDebby/PubTopicArduino";
-const char* subTopic = "PlantMoodDebby/SubTopicArduino";
+const char* pubTopic = "Plantmood/AllPlantMoods/Data";
+String subTopic = String("Plantmood/"+String(arduinoSn)+"/Mood");
 
 long currentTime, lastTime;
 
-float currentMoistureValue; 
-                                                              //0. payload omzetten naar een string -lijst van chars- om strings te kunnen vergelijken voor het afspelen van een liedje
-char newMessage[30];                                          //1. char array met max 30 slots 
+int currentMoistureValue;
+
+char newMessage[30];                                          
 
 //Objects 
 PubSubClient mqttClient(wifiClient); 
@@ -33,10 +33,10 @@ void commSetup() {
 void connToMqttBroker() {
     while (!mqttClient.connected()) {
     Serial.println("Connecting to MQTT server...");
-    if (mqttClient.connect(plantMood_ID)) {
+    if (mqttClient.connect(arduinoSn)) {
       Serial.println("Connected to MQTT server");
-      mqttClient.subscribe(subTopic);
-      Serial.println("Subscribed to topic");
+      mqttClient.subscribe(subTopic.c_str());
+      Serial.println("Subscribed to topic " + subTopic);
     } else {
       Serial.print("failed with state: ");
       Serial.print(mqttClient.state());
@@ -52,7 +52,7 @@ void pubMessage() {
     currentMoistureValue = moistureMeassurement();
     Serial.print("Sensorwaarde is: ");                    
     Serial.println(currentMoistureValue);
-    mqttClient.publish(pubTopic, String(String (plantMood_ID) +", " +String(currentMoistureValue)).c_str());
+    mqttClient.publish(pubTopic, String(String (arduinoSn) +"," +String(currentMoistureValue)).c_str());
     Serial.println("Message published");
     lastTime = millis();
   }
@@ -63,9 +63,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(topic);
 
   for (int i = 0; i<length; i++) {
-    newMessage[i] = (char)payload[i];                            //2. Kopieer ieder slot van de payload in newMessage
+    newMessage[i] = (char)payload[i];                           
   }
-  newMessage[length] = '\0';                                     //3. Laatste element moet dit zijn zodat bekend wordt dat alles ervoor een string moet worden
+  newMessage[length] = '\0';
    
   Serial.print("Message: ");
   Serial.println (newMessage);
@@ -74,11 +74,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
   drawBarGraph(currentMoistureValue);
 
   //3. Liedje afspelen aan de hand van de STATUS en eventueel water geven 
-  if (strcmp(newMessage, "Nat") == 0) {                               //4. Manier om 2 strings met elkaar te vergelijken. argumenten zijn const char* en const char*. Als ze gelijk zijn geeft de methode 0 terug
+  if (strcmp(newMessage, "WET") == 0) {
       playWetSong();
-    } else if (strcmp(newMessage, "Happy") == 0) {
-      playHappySong();
-    } else if (strcmp(newMessage, "Droog") == 0) {
+    } else if (strcmp(newMessage, "ALIVE") == 0) {
+      playAliveSong();
+    } else if (strcmp(newMessage, "DRY") == 0) {
       waterpumpOnAndOff();
       playDrySong();
     } else {
