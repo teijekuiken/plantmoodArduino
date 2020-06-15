@@ -23,16 +23,20 @@ void setup() {
 }
 
 void loop() {
-  // 1. Check verbinding met mqtt server
+  //1. Check wifi verbinding 
+  if (WiFi.status() != WL_CONNECTED) {
+    wifiSetup(); 
+   }
+
+  // 2. Check verbinding met mqtt server
   if(!mqttClient.connected()) {
     connToMqttBroker();
   }
 
-  //2. Publish message iedere 20000 milliseconden
+  //3. Publish message iedere 20000 milliseconden
   pubMessage();
 
-  //3. Loop om messages te chekken bij de mqtt server
+  //4. Loop om messages te chekken bij de mqtt server
   mqttClient.loop();
 
-  
 }
